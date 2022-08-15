@@ -44,6 +44,12 @@
 #include "mcc_generated_files/mcc.h"
 
 volatile uint8_t sw_flag = 0;
+uint8_t rgb[3];
+uint8_t i;
+    
+void setcolor(uint8_t *rgb);
+void delay_s(uint8_t seconds);
+
 /*
                          Main application
  */
@@ -67,41 +73,87 @@ void main(void)
 
     // Disable low priority global interrupts.
     //INTERRUPT_GlobalInterruptLowDisable();
-    
-    SPI1CON0 = 0x82;
+    SPI1CON0bits.EN = 0;
     SPI1CON1 = 0x40;
-    SPI1CON2 = 0x03;
     SPI1CLK = 0x06;
-            
-    uint8_t rgb[3];
-    rgb[0] = 0x40;
-    rgb[1] = 0x0;
-    rgb[2] = 0x00;
-    PORTCbits.RC5 = 1;
-    T2CONbits.T2ON = 1;
-    RC4PPS = 0x1C;  //SDO
-    RC4PPS = 0x1B;  //SCK
+    SPI1CON2bits.TXR = 1;
+    SPI1CON2bits.RXR = 0;
     
+    SPI1CON0bits.MST = 1;
+    SPI1CON0bits.BMODE = 1;
+    SPI1CON0bits.EN = 1;
     
+    RC4PPS = 0x02;  //CLC2
     
     while (1)
     {
         PORTCbits.RC5 = 1;
+                
+        rgb[0] = 0x20;
+        rgb[1] = 0x00;
+        rgb[2] = 0x00;
+        setcolor(&rgb);
+        delay_s(1);
         
-        SPI1_WriteBlock(&rgb,3);
-        TMR0_StopTimer();
-        PIR3bits.TMR0IF = 0;
-        TMR0_StartTimer();
-        while(~TMR0_HasOverflowOccured()){}
+        rgb[0] = 0x00;
+        rgb[1] = 0x20;
+        rgb[2] = 0x00;
+        setcolor(&rgb);
+        delay_s(1);
+        
+        rgb[0] = 0x00;
+        rgb[1] = 0x00;
+        rgb[2] = 0x20;
+        setcolor(&rgb);
+        delay_s(1);
+        
+        rgb[0] = 0x20;
+        rgb[1] = 0x20;
+        rgb[2] = 0x00;
+        setcolor(&rgb);
+        delay_s(1);
+        
+        rgb[0] = 0x20;
+        rgb[1] = 0x00;
+        rgb[2] = 0x20;
+        setcolor(&rgb);
+        delay_s(1);
+        
+        rgb[0] = 0x00;
+        rgb[1] = 0x20;
+        rgb[2] = 0x20;
+        setcolor(&rgb);
+        delay_s(1);
+        
         PORTCbits.RC5 = 0;
-        TMR0_StopTimer();
-        PIR3bits.TMR0IF = 0;
-        TMR0_StartTimer();
-        while(~TMR0_HasOverflowOccured()){}
         
         // Add your application code        
     }
 }
+
+void setcolor(uint8_t *rgb)
+{
+    uint8_t i;
+    for(i=0;i<3;)
+    {
+        while(PIR3bits.SPI1TXIF == 0){}
+        SPI1TXB = rgb[i];
+        i++;
+    }
+}
+
+void delay_s(uint8_t seconds)
+{
+    uint8_t i;
+    for(i=0;i<seconds;i++)
+    {
+        TMR0_StopTimer();
+        PIR3bits.TMR0IF = 0;
+        TMR0_StartTimer();
+        while(~TMR0_HasOverflowOccured()){}
+    }        
+}
+
 /**
  End of File
 */

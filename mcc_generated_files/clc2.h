@@ -1,17 +1,17 @@
  /**
-   CLC1 Generated Driver API Header File
+   CLC2 Generated Driver API Header File
  
    @Company
      Microchip Technology Inc. 
 
    @File Name
-    clc1.h
+    clc2.h
 
    @Summary
-     This is the generated header file for the CLC1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+     This is the generated header file for the CLC2 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
  
    @Description
-     This header file provides APIs for driver for CLC1.
+     This header file provides APIs for driver for CLC2.
      Generation Information :
          Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
          Device            :  PIC18F14Q41
@@ -44,8 +44,8 @@
     SOFTWARE.
 */
 
-#ifndef CLC1_H
- #define CLC1_H
+#ifndef CLC2_H
+ #define CLC2_H
  
  /**
    Section: Included Files
@@ -62,15 +62,15 @@
 #endif
 
 /**
-  Section: CLC1 APIs
+  Section: CLC2 APIs
 */
 
 /**
   @Summary
-    Initializes the CLC1
+    Initializes the CLC2
 
   @Description
-    This routine configures the CLC1 specific control registers
+    This routine configures the CLC2 specific control registers
 
   @Preconditions
     None
@@ -85,10 +85,10 @@
 
   @Example
     <code>
-    CLC1_Initialize();
+    CLC2_Initialize();
     </code>
 */
-void CLC1_Initialize(void);
+void CLC2_Initialize(void);
 
 /**
   @Summary
@@ -106,11 +106,11 @@ void CLC1_Initialize(void);
   @Example 
     <code>
     bool outputStatus;
-    outputStatus = CLC1_OutputStatusGet();
+    outputStatus = CLC2_OutputStatusGet();
     </code>
 */
 
-bool CLC1_OutputStatusGet(void);
+bool CLC2_OutputStatusGet(void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -118,7 +118,7 @@ bool CLC1_OutputStatusGet(void);
 
 #endif
 
-#endif  // CLC1_H
+#endif  // CLC2_H
 /**
  End of File
 */

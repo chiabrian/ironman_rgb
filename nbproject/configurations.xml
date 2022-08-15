@@ -15,11 +15,9 @@
         <itemPath>mcc_generated_files/spi1.h</itemPath>
         <itemPath>mcc_generated_files/tmr2.h</itemPath>
         <itemPath>mcc_generated_files/pwm1.h</itemPath>
-        <itemPath>mcc_generated_files/clc1.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/tmr0.h</itemPath>
-        <itemPath>mcc_generated_files/dma2.h</itemPath>
-        <itemPath>mcc_generated_files/dma1.h</itemPath>
+        <itemPath>mcc_generated_files/clc2.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -39,12 +37,10 @@
         <itemPath>mcc_generated_files/pwm1.c</itemPath>
         <itemPath>mcc_generated_files/spi1.c</itemPath>
         <itemPath>mcc_generated_files/tmr2.c</itemPath>
-        <itemPath>mcc_generated_files/clc1.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/tmr0.c</itemPath>
-        <itemPath>mcc_generated_files/dma1.c</itemPath>
-        <itemPath>mcc_generated_files/dma2.c</itemPath>
+        <itemPath>mcc_generated_files/clc2.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -295,8 +291,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-3fff"/>
         <property key="poweroptions.powerenable" value="true"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/Brian/Projects/Personal/IronmanMask/PIC LED.X/debug/default/PIC LED_ptg"/>
         <property key="programmerToGoImageName" value="PIC LED_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
